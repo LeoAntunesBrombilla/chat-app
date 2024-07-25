@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=chat-app
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+    networks:
+      - mynetwork
+     
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8080:8080
+    networks:
+      - mynetwork
+     
+volumes:
+  postgres_data:
+  
+networks:
+  mynetwork:
